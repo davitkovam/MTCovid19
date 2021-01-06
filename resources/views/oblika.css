@@ -1,0 +1,136 @@
+*
+{
+	margin:0px;
+	padding:0px;
+}
+body
+{
+	background-attachment:fixed;
+    background-image:url("slike/Background.png");
+}
+.container
+{
+	width:1200px;
+	height:auto;
+	margin:auto;
+	background-color:#B8B8B8 ;
+	
+}
+
+.container table img
+{
+	border-radius:10px;
+	
+}
+.glavni_naslov
+{
+	font-size:50px;
+	color:#480000;
+	text-align:center;
+	height:450px;	
+	background-image:url("slike/naslovna_slika.jpg");
+}
+.glavni_naslov img
+{
+	position:relative;
+	float:left;
+	left:20px;
+}
+.glavni_naslov img:hover
+{
+	transition:all 0.25s ease-in-out;
+	transform: translate(10px,-30px);
+}
+
+.slike
+{
+	z-index:-1000;
+}
+
+.menu
+{
+
+	margin-top:0px;
+    background: linear-gradient(#404040,#A8A8A8);
+    position: relative;
+    width: 100%;
+    height: 58px;
+}
+
+.menu ul
+{
+	list-style:none;
+	
+}
+
+.menu li
+{
+	float:left;	
+	padding: 20px;
+	transition:background .1s ease-in-out;
+    
+	
+    
+
+}
+
+.menu a
+{
+	text-decoration:none;
+	color:white;
+}
+
+.menu li:hover
+{
+	background:#404040;
+	transform: scale(1);
+}
+
+.menu ul li ul {
+    
+  padding: 0;
+  position: absolute;
+  top: 54px;
+  left: 0;
+  min-width: 150px;
+  display: none;
+  z-index:1000;
+  background-color: #A8A8A8;
+    
+}
+
+.menu ul li ul li { 
+  
+  display: block; 
+  color: #fff;
+  background-color: #A8A8A8;
+  z-index:1000;
+  width: 100%;
+/*    margin: 10px;*/
+  
+}
+
+
+.menu ul li ul li:hover { 
+	background: #404040; 
+	}
+
+.menu ul li:hover ul {
+  display: block;
+}
+
+.naslov
+{
+	text-align:center;
+	margin:20px;
+}
+
+.footer
+{
+	color:white;
+	margin-top:100px;
+	margin-bottom:25px;
+	padding:10px 0px;
+	text-align:center;
+	background-image:url("footer.png");
+}

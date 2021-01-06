@@ -238,7 +238,7 @@
 
 
 <link rel="stylesheet" href="<?php echo asset('style.css')?>" type="text/css"> 
-<div class="page first jumbotron text-cen ter page" style="margin-bottom:0">
+<div class="page first jumbotron text-center page" style="margin-bottom:0">
   <h1>Slovenia Map</h1>
   <p>Number of cases by region</p>
   <br>

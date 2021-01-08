@@ -1,90 +1,48 @@
 date,sm_title,sm_description
 2020-03-04,1. primer,Prvi potrjen primer: turist na povratku iz Maroka.
-2020-03-05,To�ke,16 vstopnih to�k za testiranje 
-2020-03-06,DSO,Prepoved obiskov v domovih starej�ih ob�anov_ potrjena oku�ba zdravnika v ZD Metlika.
-2020-03-06,Usmeritve,Glede na usmeritve NIJZ za osebe_ ki prihajajo iz obmo�ij_ kjer se pojavlja novi koronavirus_ in so zdravi_  niso potrebni posebni ukrepi. Te osebe so lahko normalno vklju�ene in ne potrebujejo doma�e karantene.
-2020-03-07,ZD Metlika,ZD Metlika zaprt
-2020-03-07,500 ljudi,Prepoved prireditev zaprtega tipa nad 500 ljudi
-2020-03-09,SNAV,Prekinejo se preventivne zdravstvene storitve v Beli Krajini in NM. Vsi �portni dogodki in druge prireditve_ na katerih je ve� kot 500 udele�encev_ se izvedejo brez gledalcev.
+2020-03-06,DSO,Prepoved obiskov v domovih starejsih obcanov_ potrjena okuzba zdravnika v ZD Metlika.
 2020-03-10,100 ljudi,Prepoved prireditev zaprtega tipa nad 100 ljudi
-2020-03-11,IT,Kontrola vstopa iz Italije. O� Kamnik zaprta_ zaprti dolenjski zdravstveni domovi. Zaprta O� �marje pri Jel�ah.
-2020-03-12,O� �PJ,Zaprta O� �marje pri Jel�ah.
 2020-03-12,Epidemija,Razglas epidemije
-2020-03-14,Vlada,Krizni �tab_ strokovna skupina. Napodvedani dodatni ukrepi.
 2020-03-14,Testiranje,Testiranje: samo hospitalizirani in zdr.delavci.
-2020-03-16,�ole,�ole se zaprejo_ �e pretekli petek po priporo�ilu 3/4 otrok ni bilo v �olah. Prepoved javnega prevoza_ zra�ni promet.
-2020-03-16,Prevoz,Prepoved javnega prevoza in napoved prepovedi zra�nega prometa.
-2020-03-17,Letala,Prepoved zra�nega prometa.
-2020-03-18,AUT,Avstrija zaprla manj�e mejne prehode.
-2020-03-18,HR,Slovenija zaprla manj�e mejne prehode z Hrva�ko.
+2020-03-16,Prevoz,Prepoved javnega prevoza in napoved prepovedi zracnega prometa.
+2020-03-18,HR in AUT,Slovenija zaprla manse mejne prehode z Hrvasko.Avstrija zaprla manjse mejne prehode.Prepoved zracnega prometa.
 2020-03-20,Zbiranje,Prepoved zbiranja na javnih mestih.
-2020-03-20,Testiranje,Testiranje: hospitalizirani_ zdr.delavci_ starej�i od 60 let_ rizi�ne skupine.
-2020-03-30,Ob�ine,Prepoved gibanja izven ob�ine prebivali��a.
-2020-03-30,Razku�evanje,Obvezno razku�evanje ve�stanovanjskih zgradb.
-2020-03-30,Trg.ran.skup,Trgovine za ranljive skupine med 8-10h
-2020-04-04,Trg.ran.skup,Trgovine od 8-10 in zadnjo uro izklju�no za ranljive skupine (invalidi_ upokojenci_ nose�nice)
-2020-04-08,Testiranje,Testiranje: hospitalizirani_ zdr.delavci_ starej�i od 60 let_ rizi�ne skupine_ ve� oseb v gospodinjstvu.
+2020-03-30,Trggovine in Obcine,Trgovine za ranljive skupine med 8-10h in Prepoved gibanja izven obcine prebivalisca.
+2020-04-04,Trg.ran.skup,Trgovine od 8-10 in zadnjo uro izkljucno za ranljive skupine (invalidi_ upokojenci_ nosecnice)
+2020-04-08,Testiranje,Testiranje: hospitalizirani_ zdr.delavci_ starejsi od 60 let_ rizicne skupine_ vec oseb v gospodinjstvu.
 2020-04-12,Tujina-7dni,Obvezna 7 dnevna karantena pri prihodu iz tujine
-2020-04-15,Testiranje,Testiranje vsi z simptomi (�e je mogo�e)
-2020-04-18,Vikendi,Spro��anje prepovedi gibanja in pojasnila glede omejitev gibanja med ob�inami (vikendi).
-2020-04-20,Spr.dejavnosti,Spro��anje nekaterih dejavnosti (gradbeno_ servisi_ �port na prostem...)_ linijski prevozi.
-2020-04-20,Spr.prevozi,Sprostitev nekaterih linijskih prevozov
-2020-04-20,Spr.�port,�portni objekti
-2020-04-21,Raziskava,Nacionalna raziskava 3000 oseb - ali so preboleli COVID-19
-2020-04-21,Testiranje,Testiranje vsi z simptomi (ne telefonsko!)
-2020-04-25,Spr.avtopralnice,Sprostitev dejavnosti: avtopralnice_ zavarovalni�tvo
-2020-04-28,Spr.poroke,Sprostitev dejavnosti: poroke
-2020-04-29,Muzeji,Sprostitev knji�nice_ galerije_ muzeji_ nep.posredovanje_ dimnikarji.
-2020-04-30,Ob�ine,Sprostitev gibanja izven ob�ine prebivali��a.
-2020-05-04,Tr�nice,Tr�nice_ stre�ba na terasah_ trgovine do 400m2_ frizerski in kozmeti�ni saloni.
-2020-05-06,Vr.�port,Sprostitev ukrepov na podro�ju vrhunskega �porta.
+2020-04-15,Testiranje,Testiranje vsi z simptomi (ce je mogoce)
+2020-04-18,Vikendi,Sproscanje prepovedi gibanja in pojasnila glede omejitev gibanja med obcinami (vikendi).
+2020-04-20,Spr.dejavnosti,Sproscanje nekaterih dejavnosti (gradbeno_ servisi_ sport na prostem...)_ linijski prevozi. Sportni objekti
+2020-04-25,Spr.avtopralnice,Sprostitev dejavnosti: avtopralnice_ zavarovalnistvo
+2020-04-30,Obcine,Sprostitev gibanja izven obcine prebivalisca.
+2020-05-04,Trznice,Trznice_ strezba na terasah_ trgovine do 400m2_ frizerski in kozmeticni saloni.
+2020-05-06,Vr.sport,Sprostitev ukrepov na podrocju vrhunskega sporta.
 2020-05-09,Zdravstvo,Sprostitev opravljanja vseh zdravstvenih in zobozdravstvenih storitev na vseh ravneh.
 2020-05-11,Prevoz,Sprostitev javnega prevoza
 2020-05-15,Epidemija,Preklic epidemije
-2020-05-15,Karantena,Sprostitev karantene: samo �e za tujce iz tretjih dr�av
-2020-05-15,Zbiranje-50os,Sprostitev zbiranja do 50 ljudi
-2020-05-18,�ole,Sprostitev O� (prva triada) in S� (zadnji letnik)
-2020-05-26,Karantena,14 dnevna karantena za tujce iz EU (z izjemami) in tretjih dr�av.
-2020-06-01,�ole,Sprostitev O� (4_ 5. razred_ od srede vsi)
-2020-06-01,Zbiranje 200,Sprostitev zbiranja do 200 ljudi
-2020-06-01,Hoteli,Sprostitev vseh nastanitvenih objektov_ wellnes_ fitnes...
-2020-06-08,Meje,Sprostitev: prehodi izven kontrolnih to�k (IT_ A_ H)
-2020-06-15,Meje,Sprostitev: maloobmejni MP z Hrva�ko_ Italija varna
-2020-06-15,Prireditve,Sprostitev: zbiranje in prireditve do 500 ljudi_ gledalci na �portnih prireditvah.
+2020-05-18,sole,Sprostitev Os(prva triada) in Ss (zadnji letnik)
+2020-05-26,Karantena,14 dnevna karantena za tujce iz EU (z izjemami) in tretjih drzav.
+2020-06-01,Hoteli ter sole ,Sprostitev vseh nastanitvenih objektov_ wellnes_ fitnes� in Sprostitev Os (4_ 5. razred_ od srede vsi)
+2020-06-08,Meje,Sprostitev: prehodi izven kontrolnih tock (IT_ A_ H)
+2020-06-15,Prireditve,Sprostitev: zbiranje in prireditve do 500 ljudi_ gledalci na sportnih prireditvah.
 2020-06-18,Karantena,14 dnevna karantena z manj izjemami (predvsem BIH_ Srbija_ Kosovo)
-2020-06-30,Zbiranje-50,Omejitev zbiranja do 50 ljudi. Dovoljeno zbiranje do 500 ljudi za dogodke brez nastopajo�ih z dovoljenjem NIJZ.
-2020-07-09,Zbiranje-10,Omejitev zbiranja na 10 ljudi_ do 50 z seznamom udele�encev. Dovoljeno zbiranje do 500 ljudi za dogodke brez nastopajo�ih z dovoljenjem NIJZ.
+2020-06-30,Zbiranje-50,Omejitev zbiranja do 50 ljudi. Dovoljeno zbiranje do 500 ljudi za dogodke brez nastopajocih z dovoljenjem NIJZ.
+2020-07-09,Zbiranje-10,Omejitev zbiranja na 10 ljudi_ do 50 z seznamom udelezencev. Dovoljeno zbiranje do 500 ljudi za dogodke brez nastopajocih z dovoljenjem NIJZ.
 2020-08-17,#OstaniZdrav,#OstaniZdrav aplikacija na voljo za Android
-2020-08-21,Hrva�ka,Obvezna karantena pri prehodu iz Hrva�ke
-2020-09-01,�ole,Vse �ole za�nejo z normalnim obratovanjem
-2020-09-10,Testiranje,Testiranje: mlaj�i otroci (do konca prve triade) se ne bodo ve� testirali samo ob simptomih prehlada.
-2020-09-13,10 dni,Obvezna karantena skraj�ana na 10 dni
+2020-08-21,Hrvaska,Obvezna karantena pri prehodu iz Hrvaske
+2020-09-01,sole,Vse sole zasnejo z normalnim obratovanjem
+2020-09-10,Testiranje,Testiranje: mlajsi otroci (do konca prve triade) se ne bodo vec testirali samo ob simptomih prehlada.
+2020-09-13,10 dni,Obvezna karantena skrajsana na 10 dni
 2020-09-19,Maske,Obvezne maske v vseh zaprtih javnih prostorih in zunaj pri manj kot 2m razdalje. Gostinski obrati odprti do 22:30.
-2020-09-28,Test,Negativen test ali 10-dnevna karantena ob vstopu iz dr�av na rde�em ali oran�nem seznamu
-2020-10-04,Maske,Omilitev no�nje mask za �ole
-2020-10-07,Razpr�ilniki,Obvezni razpr�ilniki v ve�stanovanjskih stavbah
-2020-10-07,�rna,�rna na Koro�kem razgala�ena kot ogro�eno obmo�je
-2020-10-09,Sledenje,Prehod na delno sledenje stikov (prioritetno iskala stike oku�enih v domovih starej�ih_ socialnovarstvenih zavodih_ �olstvu_ zdravstvu in skupnih gospodinjstvih)
+2020-09-28,Test,Negativen test ali 10-dnevna karantena ob vstopu iz drzav na rdecem ali oranznem seznamu
+2020-10-04,Maske,Omilitev nosnje mask za sole
+2020-10-07,Razprsilniki,Obvezni razprsilniki v vecstanovanjskih stavbah
 2020-10-09,10 oseb,Omejitev zbiranja na 10 oseb. Dodatne omejitve za dejavnosti v zaprtih prostorih (20m2 na osebo).
-2020-10-16,Regije,Omejitve za rde�e regije: gibanje izven regije_ uporaba mask zunaj_ prepoved dolo�enih dejavnosti.
-2020-10-16,OZ-3h,OstaniZdrav TAN veljavnost podalj�ana na 3 ure
-2020-10-17,Sledenje,Ustavljeno sledenje stikov in predlogov za karanteno.
-2020-10-19,�ole-6r,O� od 6.razred_ S� in glasbene �ole na daljavo
-2020-10-19,Epidemija,Vlada je razglasila epidemijo za 30 dni
-2020-10-20,Gibanje,Omejitev gibanja med 21:00-6:00_ prehodi med regijami. Dovoljeno zbiranje do 6 oseb. Prepoved vseh prireditev.
-2020-10-20,Regije,Rde�a tudi Gori�ka in Primorsko notranjska
-2020-10-22,�port,Prepoved �portnih dejavnosti razen najvi�je kategorije. Prepoved no�nih klubov_ kinematografov.
-2020-10-23,Dostava,Dostava hrane brez omejitev.
-2020-10-24,Gostilne,Zaprtje gostinskih lokalov_ hotelov_ trgovskih centrov_ frizerski in kozmeti�ni saloni. Zaprti dija�ki in �tudentski domovi_ zmanj�an javni prevoz.
-2020-10-26,Testiranje,Testiranje samo za osebe pri katerih se predvideva te�ji potek bolezni in osebe z epidemiolo�ko indikacijo.
-2020-10-26,Vrtci,Vrtci samo za nujno varstvo.
-2020-10-27,Ob�ine,Prepoved gibanja izven ob�ine prebivali��a.
-2020-10-31,Knji�nice,Dodane izjeme_ ki lahko opravljanja storitve (knji�nice_ servisne delavnice_ gradbena_ vzdr�evalna dela_ ...)
-2020-11-06,Prodajalne,Odprejo se tehni�ne_ motorne_ pohi�tvene in otro�ke prodajalne_ pedikura_ fotokopirnice_ zlatarstva in urarstva
-2020-11-06,Testiranje,Testiranje ponovno za vse osebe s sumom na COVID-19
-2020-11-13,Zbiranje,Prepovedano zbiranje ljudi (razen za o�je dru�inske �lane in �lane istega gospodinjstva)
-2020-11-16,Storitve,Prepoved ponujanja blaga in storitev potro�nikom (razen izjem - npr. �ivilske trgovine_ lekarne_ banke_ po�te_ ....)
-2020-11-16,Tujina-izjeme,�rtajo se izjeme prehoda meje brez obvezne karantene (lastni�tvo nepremi�nine_ izjema za vzdr�evanje stikov z dru�inskimi �lani le za EU+Schengen)
-2020-11-16,Javni promet,Za�asna ukinitev javnega prometa (razen taksijev)
-2020-12-03,Na�rt spro��anja,Vlada sprejela na�rt spro��anja ukrepov v petih fazah
-2020-12-07,Alkohol,Prepovedan osebni prevzem alkohola in alkoholnih pija� v gostinskih obratih
+2020-10-16,Regije,Omejitve za rdece regije: gibanje izven regije_ uporaba mask zunaj_ prepoved dolocenih dejavnosti.
+2020-10-19,Epidemija,Vlada je razglasila epidemijo za 30 dni. ,Omejitev gibanja med 21:00-6:00_ prehodi med regijami. Dovoljeno zbiranje do 6 oseb. Prepoved vseh prireditev. Rdeca tudi Goriska in Primorsko notranjska
+2020-10-22,sport,Prepoved sportnih dejavnosti razen najvisje kategorije. Prepoved nocnih klubov_ kinematografov.
+2020-10-24,Gostilne,Zaprtje gostinskih lokalov_ hotelov_ trgovskih centrov_ frizerski in kozmeticni saloni. Zaprti dijaski in studentski domovi_ zmanjsan javni prevoz.
+2020-10-27,Obcine,Prepoved gibanja izven obcine prebivalisca.Vrtci samo za nujno varstvo.
+2020-10-31,Knjiznice,Dodane izjeme_ ki lahko opravljanja storitve (knjiznice_ servisne delavnice_ gradbena_ vzdrzevalna dela_ ...)
+

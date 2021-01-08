@@ -44,6 +44,22 @@ class EntryController extends Controller
         endforeach;
         return $c;
     }
+    public static function getSmrti($region, $day)
+    {
+        if ($region == "Tujina")
+        {
+            return 0;
+        }
+        $day=date_format(date_create_from_format('Y-m-d', $day),'d-m-y' );
+        $c=0;
+        $casesDatabase = DB::select("Select {$region} from smrtslo where data = '{$day}';");
+         foreach ($casesDatabase as $cases):
+            foreach ($cases as $case):
+                $c= $case;
+            endforeach;
+        endforeach;
+        return $c;
+    }
     public static function getDictionary()
     {
         $regions=EntryController::getRegions();

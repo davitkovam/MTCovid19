@@ -40,14 +40,124 @@ class SvetController extends Controller
                 {
                     $data=$a;
                 }
-                else
+                elseif ($a)
                 {
                     $slucai=$a;
 
                 }
             endforeach;
-            $data=date_format(date_create_from_format('d-m-y', $data), 'Y-m-d');
-            array_push($tabela, array($zemja, $data, $slucai));
+            if (date_create_from_format('d-m-y', $data))
+            {
+                $data=date_format(date_create_from_format('d-m-y', $data), 'Y-m-d');
+                array_push($tabela, array($zemja, $data, $slucai));
+            }
+           // array_push($tabela, array(date_create_from_format('d-m-y', $data), $data));
+            
+        endforeach;
+        return $tabela;
+    }
+    public static function getTableActualCases()
+    {
+        //return $datum;
+        $tabela=[];
+        $countriesDatabase=DB::select("Select iso_code, datum, total_cases from svet;");
+        $rez=0;
+        foreach ($countriesDatabase as $r):
+            $zemja="";
+            $data="";
+            $slucai=0;
+            foreach ($r as $a):
+                if($zemja == "")
+                {
+                    $zemja=$a;
+                }
+                elseif($data == "")
+                {
+                    $data=$a;
+                }
+                elseif ($a)
+                {
+                    $slucai=$a;
+
+                }
+            endforeach;
+            if (date_create_from_format('d-m-y', $data))
+            {
+                $data=date_format(date_create_from_format('d-m-y', $data), 'Y-m-d');
+                array_push($tabela, array($zemja, $data, $slucai));
+            }
+           // array_push($tabela, array(date_create_from_format('d-m-y', $data), $data));
+            
+        endforeach;
+        return $tabela;
+    }
+    public static function getTableActualDeaths()
+    {
+        //return $datum;
+        $tabela=[];
+        $countriesDatabase=DB::select("Select iso_code, datum, total_deaths from svet;");
+        $rez=0;
+        foreach ($countriesDatabase as $r):
+            $zemja="";
+            $data="";
+            $slucai=0;
+            foreach ($r as $a):
+                if($zemja == "")
+                {
+                    $zemja=$a;
+                }
+                elseif($data == "")
+                {
+                    $data=$a;
+                }
+                elseif ($a)
+                {
+                    $slucai=$a;
+
+                }
+            endforeach;
+            if (date_create_from_format('d-m-y', $data))
+            {
+                $data=date_format(date_create_from_format('d-m-y', $data), 'Y-m-d');
+                array_push($tabela, array($zemja, $data, $slucai));
+            }
+           // array_push($tabela, array(date_create_from_format('d-m-y', $data), $data));
+            
+        endforeach;
+        return $tabela;
+    }
+    public static function getTableDeaths()
+    {
+        //return $datum;
+        $tabela=[];
+        $countriesDatabase=DB::select("Select iso_code, datum, total_deaths_per_million from svet;");
+        $rez=0;
+        foreach ($countriesDatabase as $r):
+            $zemja="";
+            $data="";
+            $slucai=0;
+            foreach ($r as $a):
+                if($zemja == "")
+                {
+                    $zemja=$a;
+                }
+                elseif($data == "")
+                {
+                    $data=$a;
+                }
+                elseif ($a)
+                {
+                    $slucai=$a;
+
+                }
+            endforeach;
+            if (date_create_from_format('d-m-y', $data))
+            {
+                $data=date_format(date_create_from_format('d-m-y', $data), 'Y-m-d');
+                array_push($tabela, array($zemja, $data, $slucai));
+            }
+           // array_push($tabela, array(date_create_from_format('d-m-y', $data), $data));
+            
         endforeach;
         return $tabela;
     }

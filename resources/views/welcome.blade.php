@@ -130,7 +130,6 @@
               svetActual["<?php echo ($niza[1]); ?>"] ["<?php echo ($niza[0]); ?>"] = <?php echo ($niza[2]); ?>;<?php
             endforeach;
             ?>
-
             var svetSmrt={};
 
             <?php
@@ -194,17 +193,22 @@
             var currNizaSvet=svet;
             var currNizaSlo=doDataSlucai;
             var currNizaGraf=grafSlucai;
-
+            var currRegija="VKUPNO";
 
             function lineGraph()
             {
               d3.selectAll('#graf').remove();
+              
                 
                 yScale = d3.scaleLinear()
-              .domain([0, Grafmax(currNizaGraf)])
-              .range([visina/2.6, 0]);
+              .domain([0, Grafmax(currNizaGraf, currRegija)])
+              .range([(visina/2.6) + 1, 5]);
 
               yAxis = d3.axisRight(yScale);
+              svg.append("g")
+            .attr("class", "y axis")
+            .attr("id", "graf")
+            .call(yAxis);
 
               line = d3.line()
             .x(function(d, i) { return xScale(i); }) 
@@ -218,7 +222,7 @@
                 
                 for (let index = 0; index < tabela.length; index++) {
                   const element = tabela[index];
-                  dataseter2[index] = { "y": funkcijaDobi(element) };
+                  dataseter2[index] = { "y": funkcijaDobi(element), "element":element };
                 }
 
                 svg.append("path")
@@ -227,29 +231,44 @@
                     .attr("class", "line") 
                     .attr("d", line);  
 
-                svg.selectAll(".dot")
-                    .data(dataseter2)
-                  .enter().append("circle") 
-                    .attr("class", "dot")
-                    .attr("id", "graf") 
-                    .attr("cx", function(d, i) { return xScale(i) })
-                    .attr("cy", function(d) { return yScale(d.y) })
-                    .attr("r", 2);
+                    svg.selectAll(".dot")
+                      .data(dataseter2)
+                    .enter().append("circle") 
+                      .attr("class", "dot")
+                      .attr("datum", function(d){return d.element}) 
+                      .attr('id', 'graf')
+                      .attr("cx", function(d, i) { return xScale(i) })
+                      .attr("cy", function(d) { return yScale(d.y) })
+                      .attr("r", 2)
+                      .on("mouseover", function(d) {	
+                      div.transition()		
+                              .duration(200)		
+                              .style("opacity", .9);	
+                          div.html(formatDateDrugi(dat[d.element]).substring(0, 10).split("-").reverse().join(".")+": "+funkcijaDobi(d.element)	)
+                              .style("left", (d3.event.pageX - 20) + "px")
+                          .style("top", (d3.event.pageY + 6) + "px");
+                          })
+                      .on("mouseout", function(d){
+                        div.transition()		
+                                .duration(200)		
+                                .style("opacity", 0)	  
+                            div.html(formatDateDrugi(dat[d.element]).substring(0, 10).split("-").reverse().join(".")+": "+funkcijaDobi(d.element)	)
+                              .style("left", (d3.event.pageX - 20) + "px")
+                              .style("top", (d3.event.pageY + 6) + "px");
+                      });
 
 
             }
 
 
-            function Grafmax(niza)
+            function Grafmax(niza, regija)
             {
               var m=0;
-              for(var i=0;i<reg.length;i++)
-              {
+             
                 for(var j=0; j<dat.length;j++)
                 {
-                  m=Math.max(m, niza[dat[j]][reg[i].toUpperCase()]);
+                  m=Math.max(m, niza[dat[j]][regija]);
                 }
-              }
               return m;
               
             }
@@ -259,7 +278,7 @@
             function funkcijaDobi(d) { 
                 var v = d;
                 var dd = dat[v];
-                var datt = currNizaGraf[dd]["VKUPNO"];
+                var datt = currNizaGraf[dd][currRegija];
                 return datt;  
             }
             
@@ -296,6 +315,11 @@
                
               }
             var razlikas=(maxis-minis)/5.0;
+            document.getElementById("svetzelena").innerHTML = "<" + Math.floor(parseFloat(minis)+0.5*parseFloat(razlikas)).toString();
+            document.getElementById("svetzta").innerHTML = "<" + Math.floor(parseFloat(minis)+1.5*parseFloat(razlikas)).toString();
+            document.getElementById("svetportokalova").innerHTML = "<" + Math.floor(parseFloat(minis)+2.5*parseFloat(razlikas)).toString();
+            document.getElementById("svetcrvena").innerHTML = "<" + Math.floor(parseFloat(minis)+3.5*parseFloat(razlikas)).toString();
+            document.getElementById("svetcrna").innerHTML = ">" + Math.floor(parseFloat(minis)+3.5*parseFloat(razlikas)).toString();
             for (var i=0; i<zem.length; i++)
               {
                if(parseFloat(svet[currData][zem[i].toUpperCase()])<=(parseFloat(minis)+0.5*parseFloat(razlikas)))
@@ -325,25 +349,6 @@
               }
               
             } 
-            /*
-            
-            var totalCases = [];
-            var totalCasesPerMilion = [];
-            var totalDeaths = [];
-            var totalDeathsPerMilion = [];
-            var milijon = 1000000;
-
-            for (let i = 0; i < dat.length; i++) {
-              var datumm = dat[i];
-              var steviloOkuzenihDoTegaDatuma =currNizaSlo[datumm]["VKUPNO"];
-              totalCases[i] = steviloOkuzenihDoTegaDatuma;
-              totalCasesPerMilion[i] = (steviloOkuzenihDoTegaDatuma)/milijon;
-              var steviloMrtvihDoTegaDatuma = doDataSmrt[datumm]["VKUPNO"];
-              totalDeaths[i] = steviloMrtvihDoTegaDatuma;
-              totalDeathsPerMilion[i] = (steviloMrtvihDoTegaDatuma)/milijon;
-            }
-
-*/
             
               var tabela = [];
                 var dataseter2 = [];
@@ -374,6 +379,23 @@
               ?>
             
               var razlika=(maxi-mini)/5.0;
+              if( Math.floor(parseFloat(mini)+4*parseFloat(razlika)).toString()=="0")
+              {
+                document.getElementById("slozelena").innerHTML = "<" +((parseFloat(mini)+parseFloat(razlika))*100).toFixed(2).toString()+"%";
+              document.getElementById("slozta").innerHTML = "<" +((parseFloat(mini)+2*parseFloat(razlika))*100).toFixed(2).toString()+"%";
+            document.getElementById("sloportokalova").innerHTML = "<" + ((parseFloat(mini)+3*parseFloat(razlika))*100).toFixed(2).toString()+"%";
+            document.getElementById("slocrvena").innerHTML = "<" +((parseFloat(mini)+4*parseFloat(razlika))*100).toFixed(2).toString()+"%";
+            document.getElementById("slocrna").innerHTML = ">" + ((parseFloat(mini)+4*parseFloat(razlika))*100).toFixed(2).toString()+"%";
+              }
+              else
+              {
+                document.getElementById("slozelena").innerHTML = "<" + Math.floor(parseFloat(mini)+parseFloat(razlika)).toString();
+              document.getElementById("slozta").innerHTML = "<" + Math.floor(parseFloat(mini)+2*parseFloat(razlika)).toString();
+            document.getElementById("sloportokalova").innerHTML = "<" + Math.floor(parseFloat(mini)+3*parseFloat(razlika)).toString();
+            document.getElementById("slocrvena").innerHTML = "<" + Math.floor(parseFloat(mini)+4*parseFloat(razlika)).toString();
+            document.getElementById("slocrna").innerHTML = ">" + Math.floor(parseFloat(mini)+4*parseFloat(razlika)).toString();
+              }
+              
             
             
               for (var i=0; i<reg.length; i++)
@@ -424,6 +446,32 @@
               return skupaj;
           }
 
+          function nacrtajRegija(reg)
+          {
+            currRegija=reg;
+            lineGraph();
+          }
+          function smeniNizaGraf(sto)
+          {
+            var promeneto=false;
+            if(sto=="smrtGraf"&& currNizaGraf!=grafSmrti)
+            {
+              currNizaGraf=grafSmrti;
+              document.getElementById("grafTekst").innerHTML="Kako so ukrepi vplivali na število umrlih na dan";
+              promeneto=true;
+            }
+            else if(sto=="slucaiGraf"&& currNizaGraf!=grafSlucai)
+            {
+              currNizaGraf=grafSlucai;
+              document.getElementById("grafTekst").innerHTML="Kako so ukrepi vplivali na število okuženih na dan";
+              promeneto=true;
+            }
+            if(promeneto)
+            {
+              lineGraph();
+            }
+          }
+
           function smeniNiza(sto) {
             var promeneto=false;
             var promenetoGraf=false;
@@ -431,11 +479,7 @@
               {
                 currNizaSvet=svet;
                 currNizaSlo=doDataSlucai;
-                if(currNizaGraf!=grafSlucai)
-                {
-                  currNizaGraf=grafSlucai;
-                  promenetoGraf=true;
-                }
+                
                  promeneto=true;
 
               }
@@ -443,44 +487,49 @@
               {
                 currNizaSvet=svetActual;
                 currNizaSlo=doDataSlucaiActual;
-                if(currNizaGraf!=grafSlucai)
-                {
-                  currNizaGraf=grafSlucai;
-                  promenetoGraf=true;
-                }
+               
                 promeneto=true;
 
               }
-              else if(sto=="smrt"&& currNizaSvet!=svetSmrt)
-              {
-                currNizaSvet=svetSmrt;
-                currNizaSlo=doDataSmrt;
-                if(currNizaGraf!=grafSmrti)
-                {
-                  currNizaGraf=grafSmrti;
-                  promenetoGraf=true;
-                }
-                promeneto=true;
-              }
-              else if(sto=="smrtMil"&& currNizaSvet!=svetSmrtActual)
+              else if(sto=="smrt"&& currNizaSvet!=svetSmrtActual)
               {
                 currNizaSvet=svetSmrtActual;
                 currNizaSlo=doDataSmrtActual;
-                if(currNizaGraf!=grafSmrti)
-                {
-                  currNizaGraf=grafSmrti;
-                  promenetoGrafi=true;
-                }
+                
+                promeneto=true;
+              }
+              else if(sto=="smrtMil"&& currNizaSvet!=svetSmrt)
+              {
+                currNizaSvet=svetSmrt;
+                currNizaSlo=doDataSmrt;
+                
                 promeneto=true;
               }
               if(promeneto)
               {
+                if(sto=="smrt")
+                {
+                  document.getElementById("slovenijapage").innerHTML = "Število smrti po regijah";
+                  document.getElementById("svetpage").innerHTML = "Število smrti po državah";
+                }
+                else if(sto=="smrtMil")
+                {
+                  document.getElementById("slovenijapage").innerHTML = "Odstotek smrti glede na prebivalstvo po regijah";
+                  document.getElementById("svetpage").innerHTML = "Število smrti na milijon prebivalcev po državah";
+                }
+                else if(sto=="cases")
+                {
+                  document.getElementById("slovenijapage").innerHTML = "Število okužb po regijah";
+                  document.getElementById("svetpage").innerHTML = "Število okužb po državah";
+                }
+                else
+                {
+                  document.getElementById("slovenijapage").innerHTML = "Odstotek okužb glede na prebivalstvo po regijah";
+                  document.getElementById("svetpage").innerHTML = "Število okužb na milijon prebivalcev po državah";
+                }
                 setupSvet(currNizaSvet);
                 setupSlo(currNizaSlo);
-                if(promenetoGraf)
-                {
-                   lineGraph();
-                }
+               
 
 
                 d3.selectAll("path").filter(function(d){try{a =  d.properties.hasOwnProperty("ISO_A3");} catch{return false;} return d.properties.hasOwnProperty("ISO_A3");})
@@ -544,18 +593,20 @@
 
 <div class="halfpage">
   <div class="kopcinja text-center">
-  <h1>COVID-19</h1>
+  <h1 >COVID-19</h1>
+  <br>
 <div class="buttons">
-		<button name="submit" class="action_btn submit" type="submit" value="cases" onclick="smeniNiza(this.value)">Total Cases</button>
-		<button name="submit" class="action_btn cancel" type="submit" value="casesMil" onclick="smeniNiza(this.value)">Total Cases Per Million</button>
-    <button name="submit" class="action_btn submit" type="submit" value="smrt" onclick="smeniNiza(this.value)">Total Deaths</button>
-		<button name="submit" class="action_btn cancel" type="submit" value="smrtMil" onclick="smeniNiza(this.value)">Total Deaths Per Million</button>
+    <button name="submit" class="action_btn cancel" type="submit" value="casesMil" onclick="smeniNiza(this.value)">Relativno število okuženih</button>
+    <button name="submit" class="action_btn submit" type="submit" value="cases" onclick="smeniNiza(this.value)">Število okuženih</button>
+    <button name="submit" class="action_btn cancel" type="submit" value="smrtMil" onclick="smeniNiza(this.value)">Relatvno Število Smrti</button>
+    <button name="submit" class="action_btn submit" type="submit" value="smrt" onclick="smeniNiza(this.value)">Število smrti</button>
 </div>
   
-  <p id="zaData">For date: </p>
+  <br>
   <div class="slidecontainer">
     <input type="range" min=0 max=200 value=200 class="slider" id="myRange">
   </div>
+  <p id="zaData">Za datum: </p>
 
       <script>
       var slider = document.getElementById("myRange");
@@ -563,14 +614,14 @@
       slider.max=dat.length-1;
       slider.value=dat.length-1;
       var currData=dat[slider.value];
-      zaData.innerHTML = "For date: "+currData;
+      zaData.innerHTML = "Za datum: "+currData.split("-").reverse().join(".");
       var output = slider.value;
 
 
       slider.oninput = function() {
         output = this.value;
         currData=dat[slider.value];
-        zaData.innerHTML = "For date: "+currData;  
+        zaData.innerHTML = "Za datum: "+currData.split("-").reverse().join(".");  
         setupSlo(currNizaSlo);
         setupSvet(currNizaSvet);
 
@@ -632,18 +683,20 @@
 </div>
 </div>
 <div class="pagee">
-<div class="legenda  text-center">
-<b><p>Št. okuženih </p></b>
-<b><p style="color: black;">> 1350</p></b>
-<b><p style="color: red;">< 1350</p></b>
-<b><p style="color: orange;">< 1000</p></b>
-<b><p style="color: yellow;">< 600</p></b>
-<b><p style="color: green;">< 300</p></b>
-</div>
+
+
 <div class="page first jumbotron text-center page" style="margin-bottom:0">
 <h1>Slovenija</h1>
-<p>Število primervo po regijah</p>
+<p id="slovenijapage">Odstotek okužb glede na prebivalstvo po regijah</p>
 <br>
+<div class="legendaslo  text-center">
+<b><p id="slolegenda" >Št. primerov </p></b>
+<b><p id="slocrna" style="color: #1B262C;">> 1350</p></b>
+<b><p  id="slocrvena" style="color: #C53030;">< 1350</p></b>
+<b><p  id="sloportokalova" style="color: #F2A013;">< 1000</p></b>
+<b><p  id="slozta" style="color: #E7D93B ;">< 600</p></b>
+<b><p  id="slozelena" style="color: #6EBD45;">< 300</p></b>
+</div>
   
 
 <script>
@@ -706,7 +759,8 @@
       .attr("x", 50)
       .attr("y", 50);
 
-  var div = d3.select("body").append("div")   
+  var div = d3.select("body").append("div")  
+  .attr("width", "100px") 
     .attr("class", "tooltip")               
     .style("opacity", 0);
 
@@ -716,7 +770,7 @@
         d3.selectAll("path").filter(function(d) { try{a = d.properties.region;} catch{return false;} return  d.properties.region == myRegion; })
           .attr("fill", "lightGray");
         div.transition()		
-            .duration(200)		
+            .duration(200)  		
             .style("opacity", .9) ;
         div.html((d.properties.region.replace("_", " ")+" - "+currNizaSlo[currData][d.properties.region.toUpperCase()]))
           .style("left", (d3.event.pageX - 20) + "px")
@@ -751,7 +805,15 @@
 
 <div class="page third jumbotron text-center page" style="margin-bottom:0">
 <h1>Svet</h1>
-<p>Število primerov po državah</p>
+<p id="svetpage">Število okužb na milijon prebivalcev po državah</p>
+<div class="legendasvet  text-center">
+<b><p id="svetlegenda">Št. primerov </p></b>
+<b><p  id="svetcrna" style="color: #1B262C;">> 1350</p></b>
+<b><p id="svetcrvena" style="color: #C53030;">< 1350</p></b>
+<b><p  id="svetportokalova" style="color: #F2A013;">< 1000</p></b>
+<b><p  id="svetzta"style="color: #E7D93B ;">< 600</p></b>
+<b><p  id="svetzelena" style="color: #6EBD45;">< 300</p></b>
+</div>
  
 
 
@@ -818,7 +880,8 @@
       .attr("x", 50)
       .attr("y", 50);
       var div = d3.select("body").append("div")   
-    .attr("class", "tooltip")               
+    .attr("class", "tooltip")
+    .attr("width",  "100px")               
     .style("opacity", 0);
 
 
@@ -829,7 +892,7 @@
             div.transition()		
                .duration(200)		
                .style("opacity", .9);	  
-          div.html((d.properties.ADMIN.replace("_", " ")+" - "+svet[currData][d.properties.ISO_A3.toUpperCase()]))
+          div.html((d.properties.ADMIN.replace("_", " ")+" - "+currNizaSvet[currData][d.properties.ISO_A3.toUpperCase()]))
           .style("left", (d3.event.pageX - 20) + "px")
 				   .style("top", (d3.event.pageY + 6) + "px");   
         })
@@ -852,7 +915,7 @@
             div.transition()		
                .duration(200)		
                .style("opacity", 0);	  
-          div.html((d.properties.ADMIN.replace("_", " ")+" - "+svet[currData][d.properties.ISO_A3.toUpperCase()]))
+          div.html((d.properties.ADMIN.replace("_", " ")+" - "+currNizaSvet[currData][d.properties.ISO_A3.toUpperCase()]))
           .style("left", (d3.event.pageX - 20) + "px")
 				   .style("top", (d3.event.pageY + 6) + "px");
         
@@ -868,11 +931,37 @@
 
 <div class="pagee second jumbotron text-center" style="margin-bottom:0">
   <h1>Časovnica ukrepov</h1>
-  <p>Kako so ukrepi vplivali na število okuženih in smrti</p> 
+  <p id="grafTekst">Kako so ukrepi vplivali na število okuženih na dan</p> 
 
+  <div class="buttons">
+  <button name="submit" class="action_btn cancel" type="submit" value="slucaiGraf" onclick="smeniNizaGraf(this.value)">Okuženi</button>
+    <button name="submit" class="action_btn submit" type="submit" value="smrtGraf" onclick="smeniNizaGraf(this.value)">Umrli</button>
+</div>
+<br>
+<div class="buttons">
+ 
+  <select name="regija" id="regijaGraf" onChange="nacrtajRegija(this.value);">
+  <option value="VKUPNO">Slovenija</option>
+  <option value="GORENJSKA">Gorenjska</option>
+  <option value="GORISKA">Goriška</option>
+  <option value="JUGOVZHODNA_SLOVENIJA">Jugovzhodna Slovenija</option>
+  <option value="KOROSKA">Koroška</option>
+  <option value="OBALNO_KRASKA">Obalno kraška</option>
+  <option value="OSREDNJESLOVENSKA">Osrednjeslovenska</option>
+  <option value="PODRAVSKA">Podravska</option>
+  <option value="POMURSKA">Pomurska</option>
+  <option value="POSAVSKA">Posavska</option>
+  <option value="PRIMORSKO_NOTRANJSKA">Primorsko notranjska</option>
+  <option value="SAVINJSKA">Savinjska</option>
+  <option value="ZASAVSKA">Zasavska</option>
+</select>
+</div>
+<br>
+<br>
+ 
   <script>
 		
-  var sirina = 800;
+  var sirina = 1200;
   var visina = 400;
 
   var x = d3.time.scale()
@@ -886,7 +975,8 @@ var line = d3.svg.line()
 	.y(function(d) { return y(d.title); });
 	
 var div = d3.select("body").append("div")   
-  .attr("class", "tooltip")               
+  .attr("class", "tooltip")      
+  .attr("width", "100px")         
   .style("opacity", 0);
 
 var svg = d3.select(".second").append("svg")
@@ -907,7 +997,7 @@ d3.csv("measures1.csv", function(error, data) {
   });
 
 x.domain(d3.extent(data, function(d) { return d.date; }))
-  .range([5, sirina-5]);;
+  .range([5, sirina-5]);
 y.domain([0,10]);
 
 
@@ -927,48 +1017,18 @@ g.selectAll("circle")
     div.transition()		
             .duration(200)		
             .style("opacity", .9);	
-        div.html(formatDateDrugi((d.date)))	
+        div.html(formatDateDrugi(d.date).substring(0, 10).split("-").reverse().join(".") + ": " + (d.sm_description)	)
             .style("left", (d3.event.pageX - 20) + "px")
         .style("top", (d3.event.pageY + 6) + "px");
         })
-  .on("click", function(d) {		
-        div.transition()		
-            .duration(200)		
-            .style("opacity", .9);	
-        div.html((d.sm_description))	
-            .style("left", (d3.event.pageX - 20) + "px")
-        .style("top", (d3.event.pageY + 6) + "px");
-        })
-  .on("dblclick", function(d) {	
+  .on("mouseout", function(d){
     div.transition()		
-            .duration(200)		
-            .style("opacity", .9);	
-        div.html(getCases1(d.date))	
-            .style("left", (d3.event.pageX - 20) + "px")
-        .style("top", (d3.event.pageY + 6) + "px");
-        });
-
-svg.append("text")      
-  .attr("x", (sirina/2) )
-  .attr("y",  (visina-100))
-  .style("text-anchor", "middle")
-  .attr("id", "besedilo")
-  .text("Miška čez ~ ukrep ");
-
-svg.append("text")      
-  .attr("x", (sirina/2) )
-  .attr("y",  (visina-100)+30)
-  .style("text-anchor", "middle")
-  .attr("id", "besedilo")
-  .text("Klik ~ datum  ");
-
-svg.append("text")      
-  .attr("x", (sirina/2) )
-  .attr("y",  (visina-100)+60)
-  .style("text-anchor", "middle")
-  .attr("id", "besedilo")
-  .text("Dvojni klik ~ št.okuženih do tega datuma");
-
+               .duration(200)		
+               .style("opacity", 0);	  
+          div.html(formatDateDrugi(d.date).substring(0, 10).split("-").reverse().join(".")+ ": " + (d.sm_description))
+          .style("left", (d3.event.pageX - 20) + "px")
+				   .style("top", (d3.event.pageY + 6) + "px");
+  });
 
 var xScale = d3.scaleTime()
   .domain([new Date("2020-03-04"), new Date(currData)])
@@ -986,6 +1046,7 @@ svg.append("g")
 
 svg.append("g")
   .attr("class", "y axis")
+  .attr("id", "graf")
   .call(yAxis);
 });
 
@@ -996,8 +1057,8 @@ var xScale = d3.scaleLinear()
     .range([5, sirina-5]); 
 
 var yScale = d3.scaleLinear()
-    .domain([0,  Grafmax(currNizaGraf)])
-    .range([visina/2.6, 0]); 
+    .domain([0,  Grafmax(currNizaGraf, currRegija)])
+    .range([(visina/2.6) + 1, 5]); 
 
 var line = d3.line()
     .x(function(d, i) { return xScale(i); }) 
@@ -1012,7 +1073,7 @@ for (let i = 0; i < dat.length; i++) {
 var dataseter2 = [];
 for (let index = 0; index < tabela.length; index++) {
   const element = tabela[index];
-  dataseter2[index] = { "y": funkcijaDobi(element) };
+  dataseter2[index] = { "y": funkcijaDobi(element), "element":element };
 }
 
 svg.append("path")
@@ -1024,14 +1085,33 @@ svg.append("path")
 svg.selectAll(".dot")
     .data(dataseter2)
   .enter().append("circle") 
-    .attr("class", "dot") 
+    .attr("class", "dot")
+    .attr("datum", function(d){return d.element}) 
     .attr('id', 'graf')
     .attr("cx", function(d, i) { return xScale(i) })
     .attr("cy", function(d) { return yScale(d.y) })
-    .attr("r", 2);
+    .attr("r", 2)
+    .on("mouseover", function(d) {	
+    div.transition()		
+            .duration(200)		
+            .style("opacity", .9);	
+        div.html(formatDateDrugi(dat[d.element]).substring(0, 10).split("-").reverse().join(".")+": "+funkcijaDobi(d.element)	)
+            .style("left", (d3.event.pageX - 20) + "px")
+        .style("top", (d3.event.pageY + 6) + "px");
+        })
+    .on("mouseout", function(d){
+      div.transition()		
+              .duration(200)		
+              .style("opacity", 0)	  
+          div.html(formatDateDrugi(dat[d.element]).substring(0, 10).split("-").reverse().join(".")+": "+funkcijaDobi(d.element)	)
+            .style("left", (d3.event.pageX - 20) + "px")
+            .style("top", (d3.event.pageY + 6) + "px");
+    });
+    
 
 </script>
 
+</div>
 
 
 </div>

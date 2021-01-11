@@ -598,7 +598,7 @@
 <div class="buttons">
     <button name="submit" class="action_btn cancel" type="submit" value="casesMil" onclick="smeniNiza(this.value)">Relativno število okuženih</button>
     <button name="submit" class="action_btn submit" type="submit" value="cases" onclick="smeniNiza(this.value)">Število okuženih</button>
-    <button name="submit" class="action_btn cancel" type="submit" value="smrtMil" onclick="smeniNiza(this.value)">Relatvno Število Smrti</button>
+    <button name="submit" class="action_btn cancel" type="submit" value="smrtMil" onclick="smeniNiza(this.value)">Relativno število smrti</button>
     <button name="submit" class="action_btn submit" type="submit" value="smrt" onclick="smeniNiza(this.value)">Število smrti</button>
 </div>
   

@@ -1124,7 +1124,7 @@ svg.selectAll(".dot")
      <h1>Avtorja:</h1></p>
   <p>Marijana Davitkova <br> Erik Maglica </p>
   <h1>Univerza v Ljubljani</h1>
-  <p>Multimedijske tehnologije <br> 2020</p>
+  <p>Multimedijske tehnologije <br> 2020/21</p>
 </div>
 </body>
 </html>
